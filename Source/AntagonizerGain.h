@@ -9,5 +9,5 @@ public:
     void process(float* inAudio, float inGain, float* outAudio, int numSamplesToRender);
     
 private:
-    
+    float mGainSmoothed;
 };
