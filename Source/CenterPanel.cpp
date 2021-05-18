@@ -7,6 +7,7 @@ CenterPanel::CenterPanel(AntagonizerRemakeAudioProcessor* processor)
     
     mFXPanel = std::make_unique<FXPanel>(processor);
     mFXPanel->setTopLeftPosition(0, CENTER_PANEL_MENU_BAR_HEIGHT);
+    mFXPanel->addSliders();
     addAndMakeVisible(mFXPanel.get());
 }
 
