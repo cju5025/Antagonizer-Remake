@@ -15,6 +15,7 @@ AntagonizerRemakeAudioProcessor::AntagonizerRemakeAudioProcessor()
                     parameters(*this, nullptr, Identifier("Antagonizer"), createParameterLayout())
 #endif
 {
+    initializeDSP();
 }
 
 AntagonizerRemakeAudioProcessor::~AntagonizerRemakeAudioProcessor()
@@ -174,6 +175,15 @@ void AntagonizerRemakeAudioProcessor::setStateInformation (const void* data, int
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+}
+
+void AntagonizerRemakeAudioProcessor::initializeDSP()
+{
+    for (int i = 0; i < 2; i++)
+    {
+        mInputGain[i] = std::make_unique<AntagonizerGain>();
+        mOutputGain[i] = std::make_unique<AntagonizerGain>();
+    }
 }
 
 AudioProcessorValueTreeState::ParameterLayout AntagonizerRemakeAudioProcessor::createParameterLayout()
