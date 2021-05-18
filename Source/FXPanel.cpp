@@ -46,31 +46,31 @@ void FXPanel::paint(Graphics& g)
 void FXPanel::addSliders()
 {
     const int sliderSize = 60;
-    int x = 60;
+    int x = 30;
     int y = (getHeight() * 0.5) - (sliderSize * 0.5);
     
     mDryWetSlider = std::make_unique<SliderParameter>(mProcessor->parameters, ParameterID[parameter_DryWet]);
     mDryWetSlider->setBounds(x, y, sliderSize, sliderSize);
     addAndMakeVisible(*mDryWetSlider);
-    x += sliderSize * 2;
+    x += sliderSize * 1.75;
     
     mFeedbackSlider = std::make_unique<SliderParameter>(mProcessor->parameters, ParameterID[parameter_Feedback]);
     mFeedbackSlider->setBounds(x, y, sliderSize, sliderSize);
     addAndMakeVisible(*mFeedbackSlider);
-    x += sliderSize * 2;
+    x += sliderSize * 1.75;
     
     mDepthSlider = std::make_unique<SliderParameter>(mProcessor->parameters, ParameterID[parameter_Depth]);
     mDepthSlider->setBounds(x, y, sliderSize, sliderSize);
     addAndMakeVisible(*mDepthSlider);
-    x += sliderSize * 2;
+    x += sliderSize * 1.75;
     
     mRateSlider = std::make_unique<SliderParameter>(mProcessor->parameters, ParameterID[parameter_Rate]);
     mRateSlider->setBounds(x, y, sliderSize, sliderSize);
     addAndMakeVisible(*mRateSlider);
-    x += sliderSize * 2;
+    x += sliderSize * 1.75;
     
     mAntagonizeSlider = std::make_unique<SliderParameter>(mProcessor->parameters, ParameterID[parameter_Antagonize]);
     mAntagonizeSlider->setBounds(x, y, sliderSize, sliderSize);
     addAndMakeVisible(*mAntagonizeSlider);
-    x += sliderSize * 2;
+    x += sliderSize * 1.75;
 }
