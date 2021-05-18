@@ -1,6 +1,7 @@
 #pragma once
 
 #include "JuceHeader.h"
+#include "AntagonizerGain.h"
 
 class AntagonizerRemakeAudioProcessor  : public juce::AudioProcessor
 {
@@ -46,6 +47,11 @@ public:
 private:
     
     AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+    
+    void initializeDSP();
+    
+    std::unique_ptr<AntagonizerGain> mInputGain [2];
+    std::unique_ptr<AntagonizerGain> mOutputGain [2];
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AntagonizerRemakeAudioProcessor)
 };
