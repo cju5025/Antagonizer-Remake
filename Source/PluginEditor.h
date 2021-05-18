@@ -15,7 +15,7 @@ public:
 
 private:
 
-    std::unique_ptr<MainPanel> mMainPanel
+    std::unique_ptr<MainPanel> mMainPanel;
     AntagonizerRemakeAudioProcessor& audioProcessor;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AntagonizerRemakeAudioProcessorEditor)
