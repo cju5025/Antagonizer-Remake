@@ -1,10 +1,7 @@
 #pragma once
 
-#include <JuceHeader.h>
+#include "JuceHeader.h"
 
-//==============================================================================
-/**
-*/
 class AntagonizerRemakeAudioProcessor  : public juce::AudioProcessor
 {
 public:
@@ -41,11 +38,14 @@ public:
     const juce::String getProgramName (int index) override;
     void changeProgramName (int index, const juce::String& newName) override;
 
-    //==============================================================================
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    AudioProcessorValueTreeState parameters;
+    
 private:
-    //==============================================================================
+    
+    AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AntagonizerRemakeAudioProcessor)
 };

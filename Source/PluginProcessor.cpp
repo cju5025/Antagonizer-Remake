@@ -1,7 +1,7 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "Parameters.h"
 
-//==============================================================================
 AntagonizerRemakeAudioProcessor::AntagonizerRemakeAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
      : AudioProcessor (BusesProperties()
@@ -11,7 +11,8 @@ AntagonizerRemakeAudioProcessor::AntagonizerRemakeAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ),
+                    parameters(*this, nullptr, Identifier("Antagonizer"), createParameterLayout())
 #endif
 {
 }
@@ -175,8 +176,20 @@ void AntagonizerRemakeAudioProcessor::setStateInformation (const void* data, int
     // whose contents will have been created by the getStateInformation() call.
 }
 
-//==============================================================================
-// This creates new instances of the plugin..
+AudioProcessorValueTreeState::ParameterLayout AntagonizerRemakeAudioProcessor::createParameterLayout()
+{
+    std::vector<std::unique_ptr<AudioParameterFloat>> params;
+    
+    for (int i = 0; i < parameter_TotalNumParameters; i++)
+    {
+        params.push_back(std::make_unique<AudioParameterFloat>(ParameterID[i],
+                                                               ParameterID[i],
+                                                               NormalisableRange<float>(0.f, 1.f),
+                                                               0.5f));
+    }
+    return { params.begin(), params.end() };
+}
+
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new AntagonizerRemakeAudioProcessor();
